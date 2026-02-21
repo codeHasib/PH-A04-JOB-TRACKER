@@ -37,8 +37,44 @@
         color: white;
         font-weight: bold;
       }
+      /* Cards Design */
+      .cards {
+        position: relative;
+        background-color: white;
+        padding: 10px 15px;
+        border-radius: 15px;
+      }
+      .cards h2 {
+        font-weight: bold;
+        font-size: 22px;
+      }
+      .cards h3 {
+        font-size: 20px;
+        margin-bottom: 15px;
+      }
+      .cards span {
+        display: inline-block;
+        background-color: rgb(234, 231, 231);
+        padding: 5px 15px;
+        border-radius: 10px;
+        color: rgb(33, 52, 66);
+        font-weight: bolder;
+        margin: 20px 0px;
+      }
+      .cards p {
+        font-weight: bolder;
+        margin-bottom: 10px;
+      }
+
+      .del-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+      }
+      /* No job style */
     </style>
-    <title>Document</title>
+
+    <title>Job Tracker</title>
   </head>
   <body class="w-full min-h-screen bg-gray-100">
     <!-- Header Section -->
@@ -78,6 +114,15 @@
           <button class="filter-btn btn" value="interview">Interview</button>
           <button class="filter-btn btn" value="rejected">Rejected</button>
         </div>
+      </div>
+
+      <!-- Job Cards -->
+      <div id="card-parent" class="space-y-5"></div>
+
+      <div id="no-job">
+        <i class="fa-regular fa-file-lines"></i>
+        <h2>No jobs available</h2>
+        <p>Check back soon for new job opportunities</p>
       </div>
     </main>
 
