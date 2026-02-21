@@ -162,9 +162,11 @@ function renderApp(arr) {
       appliedSpan.textContent = item.status;
       if (item.status === "Interview") {
         appliedSpan.style.backgroundColor = "lightgreen";
+        div.style.borderLeft = "5px solid lightgreen";
       }
       if (item.status === "Rejected") {
         appliedSpan.style.backgroundColor = "rgb(248, 81, 81)";
+        div.style.borderLeft = "5px solid rgb(248, 81, 81)";
       }
       div.append(appliedSpan);
       let descriptionP = document.createElement("p");
