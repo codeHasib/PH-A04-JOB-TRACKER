@@ -1,5 +1,5 @@
 // Job arr
-const jobs = [
+let jobs = [
   {
     companyName: "TechNova Solutions",
     position: "Frontend Developer",
@@ -88,6 +88,31 @@ let rejectJobsCount = 0;
 let currentFilter = "all";
 // ALl DOMS
 const cardParentDiv = document.querySelector("#card-parent");
+const allJobCountTab = document.querySelector("#total-job-tab");
+const interviewJobCountTab = document.querySelector("#interview-job-tab");
+const rejectJobCountTab = document.querySelector("#rejected-job-tab");
+const currentJobCountDisplay = document.querySelector("#current-job-count");
+function updateCount() {
+  totalJobsCount = jobs.length;
+  allJobCountTab.textContent = totalJobsCount;
+  currentJobCountDisplay.textContent = `${totalJobsCount} Jobs`;
+  let interviewFilteredLength = jobs.filter(
+    (job) => job.status === "interview",
+  ).length;
+  let rejectFilteredLength = jobs.filter(
+    (job) => job.status === "rejected",
+  ).length;
+  interviewJobCountTab.textContent = interviewFilteredLength;
+  rejectJobCountTab.textContent = rejectFilteredLength;
+  filterApply();
+  if(currentFilter === "interview") {
+    currentJobCountDisplay.textContent = `${interviewFilteredLength} of ${totalJobsCount}Jobs`;
+  }
+  if(currentFilter === "rejected") {
+    currentJobCountDisplay.textContent = `${rejectFilteredLength} of ${totalJobsCount}Jobs`;
+  }
+}
+updateCount();
 
 // Sorting Function
 const filterButtons = document.querySelectorAll(".filter-btn");
@@ -97,6 +122,7 @@ filterButtons.forEach((btn) => {
     btn.classList.add("active");
     currentFilter = btn.value;
     filterApply();
+    updateCount();
   });
 });
 
@@ -146,6 +172,7 @@ function renderApp(arr) {
         item.status = "interview";
         appliedSpan.textContent = item.status;
         filterApply();
+        updateCount();
       });
       div.append(interviewBtn);
       let rejectBtn = document.createElement("button");
@@ -155,13 +182,16 @@ function renderApp(arr) {
         item.status = "rejected";
         appliedSpan.textContent = item.status;
         filterApply();
+        updateCount();
       });
       div.append(rejectBtn);
       let jobDeleteBtn = document.createElement("button");
       jobDeleteBtn.classList.add("del-btn", "btn");
       jobDeleteBtn.innerHTML = `<i class="fa-regular fa-trash-can"></i>`;
       jobDeleteBtn.addEventListener("click", () => {
-        div.remove();
+        jobs = jobs.filter((job) => job !== item);
+        filterApply();
+        updateCount();
       });
       div.append(jobDeleteBtn);
       cardParentDiv.append(div);
@@ -182,4 +212,3 @@ function renderApp(arr) {
   }
 }
 renderApp(jobs);
-
