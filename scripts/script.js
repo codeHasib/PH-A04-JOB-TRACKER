@@ -97,10 +97,10 @@ function updateCount() {
   allJobCountTab.textContent = totalJobsCount;
   currentJobCountDisplay.textContent = `${totalJobsCount} Jobs`;
   let interviewFilteredLength = jobs.filter(
-    (job) => job.status === "interview",
+    (job) => job.status === "Interview",
   ).length;
   let rejectFilteredLength = jobs.filter(
-    (job) => job.status === "rejected",
+    (job) => job.status === "Rejected",
   ).length;
   interviewJobCountTab.textContent = interviewFilteredLength;
   rejectJobCountTab.textContent = rejectFilteredLength;
