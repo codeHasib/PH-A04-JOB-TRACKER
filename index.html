@@ -30,10 +30,57 @@
       * {
         font-family: "Geist", sans-serif;
       }
+
+      /* Filter Btn Active Style */
+      .filter-btn.active {
+        background: #007bff;
+        color: white;
+        font-weight: bold;
+      }
     </style>
     <title>Document</title>
   </head>
-  <body>
+  <body class="w-full min-h-screen bg-gray-100">
+    <!-- Header Section -->
+    <header class="container mx-auto border-b border-b-gray-300 pb-10">
+      <h1 class="text-3xl pt-10 pb-4 px-2 font-bold">
+        Job Application Tracker
+      </h1>
+      <div class="grid grid-cols-3 gap-8">
+        <div class="rounded-md bg-white py-5 px-3">
+          <h3 class="text-xl font-bold text-sky-950">Jobs</h3>
+          <h2 id="total-job-tab" class="text-2xl font-bold text-sky-950">0</h2>
+        </div>
+        <div class="rounded-md bg-white py-5 px-3">
+          <h3 class="text-xl font-bold text-sky-950">Interview</h3>
+          <h2 id="interview-job-tab" class="text-2xl font-bold text-green-400">
+            0
+          </h2>
+        </div>
+        <div class="rounded-md bg-white py-5 px-3">
+          <h3 class="text-xl font-bold text-sky-950">Rejected</h3>
+          <h2 id="rejected" class="text-2xl font-bold text-red-400">0</h2>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Section -->
+    <main class="container mx-auto py-10">
+      <div class="flex justify-between">
+        <h2 class="font-bold text-xl">Available Jobs</h2>
+        <h3 id="total-job-count" class="font-bold">0 Jobs</h3>
+      </div>
+
+      <!-- Filtering Section -->
+      <div class="py-10">
+        <div class="filters">
+          <button class="filter-btn active btn" value="all">All</button>
+          <button class="filter-btn btn" value="interview">Interview</button>
+          <button class="filter-btn btn" value="rejected">Rejected</button>
+        </div>
+      </div>
+    </main>
+
     <script src="./scripts/script.js"></script>
   </body>
 </html>
