@@ -8,7 +8,7 @@ let jobs = [
     salary: "$900/month",
     description:
       "Build responsive UI using modern JavaScript frameworks and collaborate with designers.",
-    status: "none",
+    status: "Not applied",
   },
   {
     companyName: "CloudSync Ltd.",
@@ -18,7 +18,7 @@ let jobs = [
     salary: "$1100/month",
     description:
       "Develop scalable APIs and manage database architecture for cloud systems.",
-    status: "none",
+    status: "Not applied",
   },
   {
     companyName: "PixelCraft Studio",
@@ -28,7 +28,7 @@ let jobs = [
     salary: "$600/month",
     description:
       "Design intuitive user interfaces and improve user experience across web platforms.",
-    status: "none",
+    status: "Not applied",
   },
   {
     companyName: "DataNest Analytics",
@@ -38,7 +38,7 @@ let jobs = [
     salary: "$1000/month",
     description:
       "Analyze business datasets and generate actionable insights using visualization tools.",
-    status: "none",
+    status: "Not applied",
   },
   {
     companyName: "SecureNet Corp",
@@ -48,7 +48,7 @@ let jobs = [
     salary: "$1300/month",
     description:
       "Monitor threats, implement security protocols, and ensure system safety.",
-    status: "none",
+    status: "Not applied",
   },
   {
     companyName: "NextGen Apps",
@@ -58,7 +58,7 @@ let jobs = [
     salary: "$1200/month",
     description:
       "Develop cross-platform mobile applications using Flutter and React Native.",
-    status: "none",
+    status: "Not applied",
   },
   {
     companyName: "GreenSoft Technologies",
@@ -68,7 +68,7 @@ let jobs = [
     salary: "$400/month",
     description:
       "Test software for bugs, write reports, and assist developers in fixing issues.",
-    status: "none",
+    status: "Not applied",
   },
   {
     companyName: "AI Works Lab",
@@ -78,7 +78,7 @@ let jobs = [
     salary: "$1500/month",
     description:
       "Train ML models, optimize algorithms, and deploy AI solutions to production.",
-    status: "none",
+    status: "Not applied",
   },
 ];
 // Important Variables
@@ -105,10 +105,10 @@ function updateCount() {
   interviewJobCountTab.textContent = interviewFilteredLength;
   rejectJobCountTab.textContent = rejectFilteredLength;
   filterApply();
-  if(currentFilter === "interview") {
+  if (currentFilter === "interview") {
     currentJobCountDisplay.textContent = `${interviewFilteredLength} of ${totalJobsCount}Jobs`;
   }
-  if(currentFilter === "rejected") {
+  if (currentFilter === "rejected") {
     currentJobCountDisplay.textContent = `${rejectFilteredLength} of ${totalJobsCount}Jobs`;
   }
 }
@@ -129,12 +129,12 @@ filterButtons.forEach((btn) => {
 // filter apply function
 function filterApply() {
   if (currentFilter === "interview") {
-    let filtered = jobs.filter((job) => job.status === "interview");
+    let filtered = jobs.filter((job) => job.status === "Interview");
     renderApp(filtered);
   }
   if (currentFilter === "all") renderApp(jobs);
   if (currentFilter === "rejected") {
-    let filtered = jobs.filter((job) => job.status === "rejected");
+    let filtered = jobs.filter((job) => job.status === "Rejected");
     renderApp(filtered);
   }
 }
@@ -153,13 +153,19 @@ function renderApp(arr) {
       positionH3.textContent = item.position;
       div.append(positionH3);
       let typeH4 = document.createElement("h4");
-      typeH4.textContent = item.type;
+      typeH4.textContent = `${item.type} - ${item.salary}`;
       div.append(typeH4);
       let locationH4 = document.createElement("h4");
       locationH4.textContent = item.location;
       div.append(locationH4);
       let appliedSpan = document.createElement("span");
       appliedSpan.textContent = item.status;
+      if (item.status === "Interview") {
+        appliedSpan.style.backgroundColor = "lightgreen";
+      }
+      if (item.status === "Rejected") {
+        appliedSpan.style.backgroundColor = "rgb(248, 81, 81)";
+      }
       div.append(appliedSpan);
       let descriptionP = document.createElement("p");
       descriptionP.textContent = item.description;
@@ -169,8 +175,7 @@ function renderApp(arr) {
       interviewBtn.style.marginRight = "10px";
       interviewBtn.textContent = "Interview";
       interviewBtn.addEventListener("click", () => {
-        item.status = "interview";
-        appliedSpan.textContent = item.status;
+        item.status = "Interview";
         filterApply();
         updateCount();
       });
@@ -179,8 +184,7 @@ function renderApp(arr) {
       rejectBtn.classList.add("btn", "btn-soft", "btn-error");
       rejectBtn.textContent = "Reject";
       rejectBtn.addEventListener("click", () => {
-        item.status = "rejected";
-        appliedSpan.textContent = item.status;
+        item.status = "Rejected";
         filterApply();
         updateCount();
       });
