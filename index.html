@@ -87,6 +87,23 @@
         font-size: 24px;
         font-weight: bolder;
       }
+      @media screen and (min-height: 576px) {
+        .cards h2 {
+            font-size: 20px;
+        }
+        .cards h3 {
+            font-size: 18px;
+        }
+        .cards h4 {
+            font-size: 14px;
+        }
+        #no-job {
+            padding: 70px 15px;
+        }
+        #no-job i {
+            font-size: 40px;
+        }
+      }
 
     </style>
 
@@ -94,11 +111,11 @@
   </head>
   <body class="w-full min-h-screen bg-gray-100">
     <!-- Header Section -->
-    <header class="container mx-auto border-b border-b-gray-300 pb-10">
+    <header class="container mx-auto border-b border-b-gray-300 pb-10 p-5">
       <h1 class="text-3xl pt-10 pb-4 px-2 font-bold">
         Job Application Tracker
       </h1>
-      <div class="grid grid-cols-3 gap-8">
+      <div class="grid lg:grid-cols-3 md:grid-cols-3 gap-8">
         <div class="rounded-md bg-white py-5 px-3">
           <h3 class="text-xl font-bold text-sky-950">Jobs</h3>
           <h2 id="total-job-tab" class="text-2xl font-bold text-sky-950">0</h2>
@@ -117,7 +134,7 @@
     </header>
 
     <!-- Main Section -->
-    <main class="container mx-auto py-10">
+    <main class="container mx-auto py-10 p-5">
       <div class="flex justify-between">
         <h2 class="font-bold text-xl">Available Jobs</h2>
         <h3 id="current-job-count" class="font-bold">0 Jobs</h3>
